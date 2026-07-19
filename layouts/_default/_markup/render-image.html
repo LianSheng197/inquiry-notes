@@ -3,6 +3,8 @@
   {{- $src = .RelPermalink -}}
 {{- end -}}
 <figure class="post-image">
-  <img src="{{ $src | safeURL }}" alt="{{ .Text }}" loading="lazy" decoding="async">
+  <a href="{{ $src | safeURL }}" data-image-preview data-image-alt="{{ .Text }}">
+    <img src="{{ $src | safeURL }}" alt="{{ .Text }}" loading="lazy" decoding="async">
+  </a>
   {{ with .Title }}<figcaption>{{ . }}</figcaption>{{ end }}
 </figure>

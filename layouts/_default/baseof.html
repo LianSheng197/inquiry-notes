@@ -8,6 +8,8 @@
     <main class="ts-container site-main">
       {{ block "main" . }}{{ end }}
     </main>
+    {{ partial "image-lightbox.html" . }}
+    {{ partial "spoiler.html" . }}
     {{ partial "footer.html" . }}
 
   </body>

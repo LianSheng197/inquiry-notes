@@ -1,5 +1,13 @@
 {{ define "main" }}
-  <article class="post">
+  <div class="post-page-layout">
+    {{ if .TableOfContents }}
+    <aside class="post-toc" aria-label="文章目錄">
+      <h2>文章目錄</h2>
+      {{ .TableOfContents }}
+    </aside>
+    {{ end }}
+
+    <article class="post">
     <header class="post-header">
       {{ with .Params.date }}
         <p class="ts-text is-secondary post-meta">{{ .Format "2006-01-02" }}</p>
@@ -15,8 +23,14 @@
         </div>
       {{ end }}
     </header>
-    <div class="ts-content post-content">
-      {{ .Content }}
-    </div>
-  </article>
+
+      <div class="ts-content post-content">
+        {{ .Content }}
+      </div>
+    </article>
+  </div>
+
+  {{ if .TableOfContents }}
+    {{ partial "toc-active.html" . }}
+  {{ end }}
 {{ end }}

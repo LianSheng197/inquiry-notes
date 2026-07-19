@@ -1,0 +1,7 @@
+<dialog class="image-lightbox" id="image-lightbox" aria-label="圖片預覽">
+  <button class="image-lightbox-close" type="button" aria-label="關閉圖片預覽">×</button>
+  <img id="image-lightbox-image" src="" alt="">
+</dialog>
+
+{{ $script := resources.Get "js/image-lightbox.js" | minify | fingerprint }}
+<script type="module" src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}"></script>
