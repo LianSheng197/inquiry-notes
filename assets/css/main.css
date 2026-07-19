@@ -302,6 +302,34 @@ a {
   padding-left: 1rem;
 }
 
+.post-toc #TableOfContents > ul {
+  padding-left: 0;
+  list-style: none;
+  counter-reset: toc-level-one;
+}
+
+.post-toc #TableOfContents > ul > li {
+  counter-increment: toc-level-one;
+  counter-reset: toc-level-two;
+}
+
+.post-toc #TableOfContents > ul > li::before {
+  content: counter(toc-level-one) ". ";
+}
+
+.post-toc #TableOfContents > ul > li > ul {
+  padding-left: 1.25rem;
+  list-style: none;
+}
+
+.post-toc #TableOfContents > ul > li > ul > li {
+  counter-increment: toc-level-two;
+}
+
+.post-toc #TableOfContents > ul > li > ul > li::before {
+  content: counter(toc-level-one) "-" counter(toc-level-two) ". ";
+}
+
 .post-toc li + li {
   margin-top: 0.25rem;
 }
