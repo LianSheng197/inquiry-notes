@@ -1,0 +1,22 @@
+{{ define "main" }}
+  <article class="post">
+    <header class="post-header">
+      {{ with .Params.date }}
+        <p class="ts-text is-secondary post-meta">{{ .Format "2006-01-02" }}</p>
+      {{ end }}
+      <div class="post-title-row post-title-row-main">
+        <h1 class="ts-header">{{ .Title }}</h1>
+        {{ if .Draft }}<span class="draft-badge">草稿</span>{{ end }}
+      </div>
+      {{ with .Description }}<p class="post-description">{{ . }}</p>{{ end }}
+      {{ with .Params.tags }}
+        <div class="tag-list">
+          {{ range . }}<span class="ts-chip">{{ . }}</span>{{ end }}
+        </div>
+      {{ end }}
+    </header>
+    <div class="ts-content post-content">
+      {{ .Content }}
+    </div>
+  </article>
+{{ end }}

@@ -1,0 +1,27 @@
+baseURL = 'https://example.com/'
+languageCode = 'zh-tw'
+title = '格物漫筆'
+enableRobotsTXT = true
+
+[params]
+  description = '格萬物之理，記一己所思'
+  author = 'b0ring'
+
+[pagination]
+  pagerSize = 10
+
+[[menu.main]]
+  name = '文章'
+  url = '/posts/'
+  weight = 10
+
+[[menu.main]]
+  name = '關於'
+  url = '/about/'
+  weight = 20
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      # 允許文章使用 <hr> 等原生 HTML；請只提交自己信任的文章內容。
+      unsafe = true
