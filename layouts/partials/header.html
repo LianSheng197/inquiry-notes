@@ -5,14 +5,14 @@
     </div>
     <div class="site-nav-desktop ts-navbar-right">
       {{ range site.Menus.main }}
-        <a class="ts-button is-ghost" href="{{ .URL }}">{{ .Name }}</a>
+        <a class="ts-button is-ghost" href="{{ .URL | relURL }}">{{ .Name }}</a>
       {{ end }}
     </div>
     <details class="site-nav-mobile">
       <summary class="ts-button is-ghost">選單</summary>
       <nav class="site-nav-mobile-list" aria-label="行動版導覽">
         {{ range site.Menus.main }}
-          <a href="{{ .URL }}">{{ .Name }}</a>
+          <a href="{{ .URL | relURL }}">{{ .Name }}</a>
         {{ end }}
       </nav>
     </details>
