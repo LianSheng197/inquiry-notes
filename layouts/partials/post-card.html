@@ -11,6 +11,10 @@
       {{ range . }}<span class="ts-chip">{{ . }}</span>{{ end }}
     </div>
   {{ end }}
-  <p class="ts-text">{{ .Summary | plainify }}</p>
+  {{ with .Description }}
+    <p class="ts-text post-excerpt">{{ . }}</p>
+  {{ else }}
+    <p class="ts-text post-excerpt">{{ .Summary | plainify | truncate 180 "…" }}</p>
+  {{ end }}
   <a class="ts-button is-small" href="{{ .RelPermalink }}">閱讀全文</a>
 </article>
