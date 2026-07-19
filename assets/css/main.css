@@ -7,6 +7,7 @@
   --site-text: #e8edf5;
   --site-muted: #96a1b3;
   --site-accent: #78b7ff;
+  --site-accent-sub: #a9d0fd80;
   --site-code-bg: #0b0e14;
 }
 
@@ -383,17 +384,33 @@ a {
   color: #f3f7ff;
   background: transparent;
   border-top: 0;
-  border-bottom: 2px solid var(--site-accent);
+  border-bottom: 3px solid var(--site-accent);
   margin-top: 3.25rem;
   font-size: 1.85rem;
   letter-spacing: 0.01em;
 }
 
 .post-content h3 {
+  position: relative;
   padding-bottom: 0.35rem;
   color: #dce8f8;
-  border-bottom: 1px solid var(--site-border);
   font-size: 1.4rem;
+}
+
+.post-content h3::after {
+  position: absolute;
+  right: auto;
+  bottom: 0;
+  left: 0;
+  width: min(100%, calc(var(--h3-text-width, 50%) + 2.5rem));
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--site-accent-sub) 0,
+    var(--site-accent-sub) var(--h3-text-width, 50%),
+    transparent 100%
+  );
+  content: "";
 }
 
 .post-content strong {
