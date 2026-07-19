@@ -1,0 +1,16 @@
+{{- $classes := slice "shortcode-emphasis" -}}
+{{- if eq (.Get "bold") "true" -}}
+  {{- $classes = $classes | append "is-bold" -}}
+{{- end -}}
+{{- if eq (.Get "size") "big" -}}
+  {{- $classes = $classes | append "is-big" -}}
+{{- end -}}
+{{- with .Get "color" -}}
+  {{- $classes = $classes | append (printf "is-%s" (. | lower)) -}}
+{{- end -}}
+{{- $text := .Get "text" -}}
+{{- if $text -}}
+  <p class="{{ delimit $classes " " }}">{{ $text | markdownify }}</p>
+{{- else -}}
+  <p class="{{ delimit $classes " " }}">{{ .Inner | markdownify }}</p>
+{{- end -}}
