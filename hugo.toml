@@ -23,5 +23,10 @@ enableRobotsTXT = true
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
-      # 允許文章使用 <hr> 等原生 HTML；請只提交自己信任的文章內容。
+      # 允許文章使用原生 HTML
       unsafe = true
+
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+    ordered = false
