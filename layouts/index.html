@@ -1,7 +1,13 @@
 {{ define "main" }}
   <section class="hero ts-box">
-    <h1 class="ts-header">{{ site.Title }}</h1>
-    <p class="ts-text is-large">{{ site.Params.description }}</p>
+    {{ $icon := resources.Get "icon256.png" }}
+    <div class="hero-brand">
+      <img class="hero-icon" src="{{ $icon.RelPermalink }}" alt="">
+      <div>
+        <h1 class="ts-header hero-title">{{ site.Title }}</h1>
+        <p class="ts-text is-large hero-description">{{ site.Params.description }}</p>
+      </div>
+    </div>
   </section>
 
   <section class="section-block">

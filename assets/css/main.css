@@ -111,6 +111,28 @@ a {
   letter-spacing: 0.02em;
 }
 
+.hero-brand {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.hero-icon {
+  flex: 0 0 auto;
+  width: clamp(5rem, 16vw, 8rem);
+  height: clamp(5rem, 16vw, 8rem);
+  object-fit: contain;
+  border-radius: 1rem;
+}
+
+.hero-title {
+  margin-bottom: 0.5rem;
+}
+
+.hero-description {
+  margin-bottom: 0;
+}
+
 .site-main {
   max-width: var(--site-max-width);
   min-height: calc(100vh - 150px);

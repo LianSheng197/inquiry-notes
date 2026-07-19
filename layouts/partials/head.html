@@ -3,6 +3,8 @@
 <meta name="description" content="{{ .Description | default site.Params.description }}">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
 
+{{ $favicon := resources.Get "icon64.png" }}
+<link rel="icon" type="image/png" sizes="64x64" href="{{ $favicon.RelPermalink }}">
 <link rel="canonical" href="{{ .Permalink }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/5.0.2/tocas.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/5.0.2/tocas.min.js"></script>
