@@ -285,6 +285,7 @@ a {
 .post-content h2,
 .post-content h3,
 .post-content h4 {
+  scroll-margin-top: 6rem;
   margin-top: 2.5rem;
   margin-bottom: 0.75rem;
   color: var(--site-text);
@@ -292,11 +293,21 @@ a {
 }
 
 .post-content h2 {
-  font-size: 1.65rem;
+  padding: 0.75rem 0 0.55rem;
+  color: #f3f7ff;
+  background: transparent;
+  border-top: 0;
+  border-bottom: 2px solid var(--site-accent);
+  margin-top: 3.25rem;
+  font-size: 1.85rem;
+  letter-spacing: 0.01em;
 }
 
 .post-content h3 {
-  font-size: 1.3rem;
+  padding-bottom: 0.35rem;
+  color: #dce8f8;
+  border-bottom: 1px solid var(--site-border);
+  font-size: 1.4rem;
 }
 
 .post-content strong {
@@ -308,10 +319,16 @@ a {
 }
 
 .post-content blockquote {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   padding: 0.75rem 1.25rem;
   color: #b8c5d8;
   background: rgba(120, 183, 255, 0.08);
   border-left: 3px solid var(--site-accent);
+}
+
+.post-content blockquote p {
+  margin: 0;
 }
 
 .shortcode-emphasis {
@@ -324,7 +341,7 @@ a {
 }
 
 .shortcode-emphasis.is-big {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .shortcode-emphasis.is-red { color: #ff6b6b; }
