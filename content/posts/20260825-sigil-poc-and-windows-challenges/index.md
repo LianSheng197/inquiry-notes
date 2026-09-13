@@ -3,7 +3,7 @@ title: "Sigil 的 PoC 完成了，但我找不到移植到 Windows 的路..."
 description: "目前 Sigil 的 Linux PoC 架構，以及這套做法移植到 Windows 前必須面對的相容性與信任問題"
 date: 2026-08-25T21:31:00+08:00
 tags: ["RMMV", "Sigil", "Rust", "開發紀錄"]
-draft: true
+draft: false
 ---
 
 ## 前言
