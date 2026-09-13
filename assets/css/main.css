@@ -287,7 +287,13 @@ a.is-external::after {
 .post-toc {
   position: sticky;
   top: 5.5rem;
+  box-sizing: border-box;
   min-width: 0;
+  max-height: calc(100vh - 7rem);
+  max-height: calc(100dvh - 7rem);
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-gutter: stable;
   padding: 1rem;
   color: var(--site-muted);
   background: rgba(11, 14, 20, 0.42);

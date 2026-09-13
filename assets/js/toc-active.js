@@ -10,6 +10,22 @@ if (toc) {
     .filter(Boolean);
 
   if (headings.length) {
+    const keepLinkVisible = (link) => {
+      if (toc.scrollHeight <= toc.clientHeight) return;
+
+      const tocRect = toc.getBoundingClientRect();
+      const linkRect = link.getBoundingClientRect();
+      const edgeSpacing = 12;
+      const visibleTop = tocRect.top + edgeSpacing;
+      const visibleBottom = tocRect.bottom - edgeSpacing;
+
+      if (linkRect.top < visibleTop) {
+        toc.scrollTop -= visibleTop - linkRect.top;
+      } else if (linkRect.bottom > visibleBottom) {
+        toc.scrollTop += linkRect.bottom - visibleBottom;
+      }
+    };
+
     const setActive = (index) => {
       links.forEach((link, linkIndex) => {
         const active = linkIndex === index;
@@ -17,6 +33,8 @@ if (toc) {
         if (active) link.setAttribute('aria-current', 'location');
         else link.removeAttribute('aria-current');
       });
+
+      keepLinkVisible(links[index]);
     };
 
     const updateActive = () => {
