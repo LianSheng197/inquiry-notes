@@ -574,7 +574,8 @@ a.is-external::after {
 }
 
 .post-image img,
-.post-media video {
+.post-media video,
+.post-media iframe {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -582,6 +583,7 @@ a.is-external::after {
   height: auto;
   object-fit: contain;
   background: #0b0e14;
+  border: 0;
   border-radius: 0.25rem;
 }
 

@@ -1,16 +1,42 @@
 {{- $src := .Get "src" -}}
-{{- with .Page.Resources.GetMatch $src -}}
-  {{- $src = .RelPermalink -}}
-{{- end -}}
-{{- $poster := .Get "poster" -}}
-{{- with .Page.Resources.GetMatch $poster -}}
-  {{- $poster = .RelPermalink -}}
-{{- end -}}
 {{- $inner := .Inner -}}
+{{- $youtubeID := "" -}}
+{{- $youtubeWatch := findRESubmatch `(?i)^https?://(?:www\.|m\.)?youtube\.com/watch\?[^#]*v=([A-Za-z0-9_-]{11})(?:[&#].*)?$` $src -}}
+{{- $youtubeShort := findRESubmatch `(?i)^https?://(?:www\.)?youtu\.be/([A-Za-z0-9_-]{11})(?:[?&#/].*)?$` $src -}}
+{{- $youtubeShorts := findRESubmatch `(?i)^https?://(?:www\.|m\.)?youtube\.com/shorts/([A-Za-z0-9_-]{11})(?:[?&#/].*)?$` $src -}}
+{{- $youtubeEmbed := findRESubmatch `(?i)^https?://(?:www\.|m\.)?youtube(?:-nocookie)?\.com/embed/([A-Za-z0-9_-]{11})(?:[?&#/].*)?$` $src -}}
+{{- if gt (len $youtubeWatch) 0 -}}
+  {{- $youtubeID = index (index $youtubeWatch 0) 1 -}}
+{{- else if gt (len $youtubeShort) 0 -}}
+  {{- $youtubeID = index (index $youtubeShort 0) 1 -}}
+{{- else if gt (len $youtubeShorts) 0 -}}
+  {{- $youtubeID = index (index $youtubeShorts 0) 1 -}}
+{{- else if gt (len $youtubeEmbed) 0 -}}
+  {{- $youtubeID = index (index $youtubeEmbed 0) 1 -}}
+{{- end -}}
+{{- $caption := .Get "caption" -}}
 <figure class="post-media">
-  <video controls preload="metadata"{{ with $poster }} poster="{{ . }}"{{ end }}>
-    <source src="{{ $src | safeURL }}" type="{{ .Get "type" | default "video/mp4" }}">
-    你的瀏覽器不支援 HTML5 影片播放。
-  </video>
-  {{ with .Get "caption" }}<figcaption>{{ . }}</figcaption>{{ end }}
+  {{- if $youtubeID }}
+    {{- $title := .Get "title" | default $caption | default "YouTube 影片播放器" -}}
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/{{ $youtubeID }}"
+      title="{{ $title }}"
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen></iframe>
+  {{- else }}
+    {{- with .Page.Resources.GetMatch $src -}}
+      {{- $src = .RelPermalink -}}
+    {{- end -}}
+    {{- $poster := .Get "poster" -}}
+    {{- with .Page.Resources.GetMatch $poster -}}
+      {{- $poster = .RelPermalink -}}
+    {{- end -}}
+    <video controls preload="metadata"{{ with $poster }} poster="{{ . }}"{{ end }}>
+      <source src="{{ $src | safeURL }}" type="{{ .Get "type" | default "video/mp4" }}">
+      你的瀏覽器不支援 HTML5 影片播放。
+    </video>
+  {{- end }}
+  {{ with $caption }}<figcaption>{{ . }}</figcaption>{{ end }}
 </figure>
